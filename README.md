@@ -1,7 +1,7 @@
 # Tutorial 2 Module 10
 
 <details>
-<summary>2.1. Original Code and How It Run</summary>
+<summary>2.1. Original code of broadcast chat.</summary>
 
 Server
 ![2.1 Original code and how it run](image.png)
@@ -37,7 +37,31 @@ Ketika kita mengetik pesan di setiap _client_, pesan tersebut dikirim ke server,
 
 </details>
 
-<!-- <details>
-<summary>1.3. Multiple Spawn and Removing Drop.</summary>
+<details>
+<summary>2.2. Modifying the websocket port.</summary>
 
-</details> -->
+Ada beberapa hal yang perlu diubah agar dapat mengganti _port_ menjadi _port_ 8080,
+
+#### `src/bin/server.rs`:
+Ubah angka _port_ pada `TcpListener::bind`:
+
+```
+let listener = TcpListener::bind("127.0.0.1:8080").await?;
+```
+
+#### `src/bin/client.rs`:
+Ubah URI untuk menghubungkan ke server pada port 8080:
+
+```
+let (mut ws_stream, _) =
+    ClientBuilder::from_uri(Uri::from_static("ws://127.0.0.1:8080"))
+        .connect()
+        .await?;
+```
+
+### WebSocket Protocol:
+Kedua server dan klien menggunakan protokol WebSocket, yang didefinisikan dan diimplementasikan dalam _crate_ `tokio_websockets`. _Crate_ ini menyediakan abstraksi dan utilitas yang diperlukan untuk bekerja dengan koneksi WebSocket dalam aplikasi berbasis Tokio. Protokol WebSocket memungkinkan komunikasi dua arah antara klien dan server melalui satu koneksi yang berlangsung lama.
+
+Setelah melakukan modifikasi tersebut, kita dapat menjalankan server dan klien pada port 8080.
+
+</details>
