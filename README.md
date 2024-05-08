@@ -65,3 +65,31 @@ Kedua server dan klien menggunakan protokol WebSocket, yang didefinisikan dan di
 Setelah melakukan modifikasi tersebut, kita dapat menjalankan server dan klien pada port 8080.
 
 </details>
+
+<details>
+<summary>2.3. Small changes. Add some information to client.</summary>
+Server
+
+![2.3 Small changes. Add some information to client](image-8.png)
+Client -1
+![2.3 Small changes. Add some information to client - 1](image-9.png)
+Client - 2
+![2.3 Small changes. Add some information to client - 2](image-10.png)
+Client - 3
+![2.3 Small changes. Add some information to client - 3](image-11.png)
+
+Dalam implementasi sebelumnya, server hanya menyiarkan pesan yang diterima dari seorang klien tanpa informasi tambahan tentang pengirimnya. Begitu pula dengan klien yang menerima pesan dari server tanpa detail tentang siapa yang mengirim pesan tersebut.
+
+Untuk menambahkan informasi tentang pengirim ke setiap klien, kita perlu memodifikasi baik server maupun klien:
+
+#### Modifikasi Server
+- Dalam kode server, saat menangani pesan dari seorang klien, kita perlu menambahkan informasi tentang pengirim (dalam hal ini, alamat IP dan _port_ klien) ke pesan sebelum menyiarkannya ke semua klien.
+- Modifikasi ini memastikan bahwa setiap klien menerima pesan beserta detail tentang siapa yang mengirim pesan tersebut.
+
+#### Modifikasi Klien
+- Dalam kode klien, kita perlu mengekstrak dan menampilkan informasi pengirim bersama dengan konten pesan.
+- Modifikasi ini memungkinkan setiap klien menampilkan pesan bersama dengan detail tentang pengirim, memberikan konteks tentang asal setiap pesan.
+
+Dengan melakukan perubahan ini baik dalam kode server maupun klien, kita memastikan bahwa informasi tentang pengirim disertakan dan ditampilkan dengan benar dalam aplikasi obrolan. Penting untuk memodifikasi kedua sisi komunikasi untuk menjaga konsistensi dan memastikan bahwa setiap klien menerima dan menampilkan pesan dengan informasi pengirim secara akurat.
+
+</details>
